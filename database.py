@@ -11,10 +11,10 @@ def init_db():
     cursor = conn.cursor()
 
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS resumes (
+    CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        filename TEXT,
-        score REAL
+        username TEXT UNIQUE,
+        password TEXT
     )
     """)
 
@@ -39,3 +39,24 @@ def get_resumes():
 
     conn.close()
     return data
+
+def create_user(username, password):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+
+    conn.commit()
+    conn.close()
+
+
+def get_user(username, password):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+
+    user = cursor.fetchone()
+    conn.close()
+
+    return user

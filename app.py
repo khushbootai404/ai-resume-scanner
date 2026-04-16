@@ -35,20 +35,37 @@ def index():
     return flask.render_template("index.html", results=results)
 
 app.secret_key = "supersecretkey"
+
+from database import create_user, get_user
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
 
-        # simple hardcoded login (we upgrade later)
-        if username == "admin" and password == "1234":
+        user = get_user(username, password)
+
+        if user:
             session["user"] = username
             return redirect(url_for("index"))
         else:
-            return "Invalid Credentials"
+            return "Invalid credentials"
 
     return render_template("login.html")
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        try:
+            create_user(username, password)
+            return redirect(url_for("login"))
+        except:
+            return "User already exists"
+
+    return render_template("signup.html")
 
 @app.route("/logout")
 def logout():
