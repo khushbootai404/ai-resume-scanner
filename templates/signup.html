@@ -1,5 +1,121 @@
-<form method="POST">
-    <input type="text" name="username" placeholder="Enter username" required>
-    <input type="password" name="password" placeholder="Enter password" required>
-    <button type="submit">Sign Up</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | AI Resume Scanner</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            width: 320px;
+            text-align: center;
+            color: white;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .brand {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: rgba(255,255,255,0.2);
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6c63ff, #7f7bff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            background: linear-gradient(135deg, #5848d6, #6c63ff);
+        }
+
+        a {
+            color: #9d8bff;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="brand">🚀 AI Resume Scanner</div>
+        <h2>Create Account</h2>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            Already have an account?
+            <a href="/login">Login</a>
+        </p>
+    </div>
+
+</body>
+</html>
