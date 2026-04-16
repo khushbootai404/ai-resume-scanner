@@ -3,4 +3,4 @@ scikit-learn
 pandas
 PyPDF2
 numpy
-gunicon
+gunicorn
