@@ -15,6 +15,9 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+from database import init_db
+
+init_db()
 @app.route("/", methods=["GET", "POST"])
 def index():
     if "user" not in session:
