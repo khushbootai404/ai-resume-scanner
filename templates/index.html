@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Scanner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="hero">
+
+    <h1>AI Resume Scanner</h1>
+    <p>Upload resumes and instantly find the best candidates using AI</p>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-box">
+
+        <textarea name="job_desc" placeholder="Paste job description here..." required></textarea>
+
+        <label class="file-upload">
+            <input type="file" name="resumes" multiple required>
+            <span>📁 Upload Resumes</span>
+        </label>
+
+        <button type="submit">Scan Now</button>
+    </form>
+
+</div>
+
+{% if results %}
+<div class="results-container">
+
+    <h2>Top Candidates</h2>
+
+    {% for r in results %}
+    <div class="result-card">
+
+        <div class="info">
+            <h3>{{ r.name }}</h3>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" style="width:  rscore ">
+                {{ r.score }}%
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+</body>
+</html>
