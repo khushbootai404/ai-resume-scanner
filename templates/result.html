@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result | AI Resume Scanner</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .score {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: {% if score >= 70 %}#4CAF50{% elif score >= 40 %}#FFC107{% else %}#FF5252{% endif %};
+        }
+        
+
+        .status {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: #6c63ff;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #5848d6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎯 Resume Analysis</h1>
+
+        <div class="score">{{ score }}%</div>
+
+        {% if score >= 70 %}
+            <div class="status">🔥 Excellent Match!</div>
+        {% elif score >= 40 %}
+            <div class="status">👍 Good Match</div>
+        {% else %}
+            <div class="status">⚠️ Needs Improvement</div>
+        {% endif %}
+
+        <a href="/">⬅ Scan Another Resume</a>
+    </div>
+
+</body>
+</html>

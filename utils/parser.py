@@ -1,20 +1,17 @@
-import PyPDF2
+from PyPDF2 import PdfReader
 
 def extract_text(file_path):
     text = ""
 
     try:
-        if file_path.endswith(".pdf"):
-            with open(file_path, "rb") as f:
-                reader = PyPDF2.PdfReader(f)
-                for page in reader.pages:
-                    text += page.extract_text() or ""
+        reader = PdfReader(file_path)
 
-        elif file_path.endswith(".txt"):
-            with open(file_path, "r", encoding="utf-8") as f:
-                text = f.read()
+        for page in reader.pages:
+            page_text = page.extract_text()
+            if page_text:
+                text += page_text
 
     except Exception as e:
-        print("Error reading file:", e)
+        print("PDF read error:", e)
 
     return text

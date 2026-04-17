@@ -1,19 +1,17 @@
-import pickle
+def match_resume(resume_text, job_desc):
+    resume_text = resume_text.lower()
+    job_desc = job_desc.lower()
 
-# Load trained model
-model = pickle.load(open("model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+    job_keywords = job_desc.split()
 
-def match_resume(job_desc, resume_text):
-    try:
-        text = job_desc + " " + resume_text
-        vec = vectorizer.transform([text])
+    matched = 0
 
-        # probability score (0 to 1)
-        prob = model.predict_proba(vec)[0][1]
+    for word in job_keywords:
+        if word in resume_text:
+            matched += 1
 
-        return round(prob * 100, 2)
-
-    except Exception as e:
-        print("Error:", e)
+    if len(job_keywords) == 0:
         return 0
+
+    score = (matched / len(job_keywords)) * 100
+    return round(score, 2)
